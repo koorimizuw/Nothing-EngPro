@@ -20,4 +20,8 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::middleware('auth:api')->group(function() {
     Route::post('/new', 'OrderController@new');
+    Route::post('/order', 'OrderController@order');
 });
+
+Route::get('/list', 'OrderController@list');
+Route::post('/search', 'OrderController@search');
