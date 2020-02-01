@@ -15,13 +15,14 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/me', function (Request $request) {
     return $request->user();
  });
-Route::post('/login', 'Auth\LoginController@login');
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/login', 'Auth\LoginController@login'); //Request [name][password]
+Route::post('/register', 'Auth\RegisterController@register'); //Request [name][password]
 
+//Need authorization
 Route::middleware('auth:api')->group(function() {
-    Route::post('/new', 'OrderController@new');
-    Route::post('/order', 'OrderController@order');
+    Route::post('/new', 'OrderController@new'); //Request [name][link][time][number]
+    Route::post('/order', 'OrderController@order'); //Request [id]
 });
 
 Route::get('/list', 'OrderController@list');
-Route::post('/search', 'OrderController@search');
+Route::post('/search', 'OrderController@search'); //Request [key]
